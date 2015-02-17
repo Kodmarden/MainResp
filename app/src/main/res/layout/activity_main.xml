@@ -44,7 +44,7 @@
 
             <GridLayout
                 android:layout_width="173dp"
-                android:layout_height="220dp"
+                android:layout_height="254dp"
                 android:layout_gravity="left|top"
                 android:columnCount="4"
                 android:rowCount="17"
@@ -62,8 +62,8 @@
             </GridLayout>
 
             <GridLayout
-                android:layout_width="182dp"
-                android:layout_height="220dp"
+                android:layout_width="172dp"
+                android:layout_height="254dp"
                 android:layout_gravity="right|top">
 
                 <TextView
@@ -77,8 +77,8 @@
             </GridLayout>
 
             <GridLayout
-                android:layout_width="187dp"
-                android:layout_height="220dp"
+                android:layout_width="175dp"
+                android:layout_height="250dp"
                 android:columnCount="3"
                 android:rowCount="3"
                 android:layout_gravity="left|bottom"
@@ -98,7 +98,7 @@
 
             <GridLayout
                 android:layout_width="175dp"
-                android:layout_height="220dp"
+                android:layout_height="246dp"
                 android:layout_gravity="right|bottom">
 
                 <TextView

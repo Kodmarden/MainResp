@@ -20,6 +20,10 @@
             android:name=".meActivity"
             android:label="@string/title_activity_me" >
         </activity>
+        <activity
+            android:name=".touchcontact"
+            android:label="@string/title_activity_touchcontact" >
+        </activity>
     </application>
 
 </manifest>

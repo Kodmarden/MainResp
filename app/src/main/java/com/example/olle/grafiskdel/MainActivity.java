@@ -57,10 +57,19 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
             view.startDrag(null, shadowBuilder, view, 0);
             view.setVisibility(View.INVISIBLE);
+            changeAct(view);
             return true;
         } else {
             return false;
         }
+    }
+
+    private void changeAct(View view) {
+
+        Intent changeAct;
+        changeAct = new Intent(this, meActivity.class);
+        changeAct.putExtra("name", "Igor");
+        startActivity(changeAct);
     }
 
     public boolean onDrag(View layoutview, DragEvent dragevent) {
@@ -69,6 +78,7 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
             case DragEvent.ACTION_DRAG_STARTED:
                 Log.d(LOGCAT, "Drag event started");
                 setVisibility(View.VISIBLE);
+
                 break;
             case DragEvent.ACTION_DRAG_ENTERED:
                 Log.d(LOGCAT, "Drag event entered into "+layoutview.toString());
@@ -91,6 +101,8 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
                 //   container.addView(view);
                 //   view.setVisibility(View.VISIBLE);
                 //   setVisibility(View.INVISIBLE);
+
+
                 ((View)dragevent.getLocalState()).setVisibility(View.VISIBLE);
 
                 break;
