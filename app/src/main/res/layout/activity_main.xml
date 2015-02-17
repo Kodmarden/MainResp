@@ -34,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:text="ListView"
                 android:id="@+id/button2"
-                android:layout_weight="0.57" />
+                android:layout_weight="0.57"
+                android:onClick="startListActivity"/>
 
         </LinearLayout>
 

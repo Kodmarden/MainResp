@@ -1,4 +1,4 @@
-package kodmarden.kodmarden_contactlist;
+package com.example.olle.grafiskdel;
 
 import android.app.ListActivity;
 import android.app.LoaderManager;

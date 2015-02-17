@@ -1,4 +1,4 @@
-package kodmarden.kodmarden_contactlist;
+package com.example.olle.grafiskdel;
 
 /**
  * Created by magnus on 2/5/15.

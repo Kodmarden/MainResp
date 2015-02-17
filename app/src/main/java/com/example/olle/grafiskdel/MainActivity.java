@@ -131,4 +131,9 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
         startActivity(changeAct);
 
     }
+
+    public void startListActivity(View view)
+    {
+        startActivity(new Intent(this, ContactListActivity.class));
+    }
 }

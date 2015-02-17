@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_me">meActivity</string>
     <string name="title_activity_touchcontact">touchcontact</string>
+    <string name="title_activity_ContactListActivity">touchcontact</string>
 
 </resources>
