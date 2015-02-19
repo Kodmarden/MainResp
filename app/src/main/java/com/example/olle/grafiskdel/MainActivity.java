@@ -3,18 +3,12 @@ package com.example.olle.grafiskdel;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.olle.grafiskdel.R;
 
 /**
  * This class implements the interfaces OnTouchListener and OnDragListener
@@ -24,7 +18,7 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
 {
 
     final String LOGCAT = "debug";
-
+    View.DragShadowBuilder shadowBuilder;
     TextView[] _textView;
 
     @Override
@@ -38,25 +32,13 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
          */
         findViewById(R.id.button3).setOnTouchListener(this);
 
-
-        /**
-         * TextViews in the corner
-         */
-        _textView = new TextView[4];
-
-      //  _textView[0] = (TextView) findViewById(R.id.ringView);
-      //  _textView[1] = (TextView) findViewById(R.id.smsView);
-      //  _textView[2] = (TextView) findViewById(R.id.editView);
-      //  _textView[3] = (TextView) findViewById(R.id.mailView);
-
-
     }
 
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+            shadowBuilder = new View.DragShadowBuilder(view);
             view.startDrag(null, shadowBuilder, view, 0);
-            view.setVisibility(View.INVISIBLE);
+            //view.setVisibility(View.INVISIBLE);
             changeAct(view);
             return true;
         } else {
@@ -67,8 +49,8 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
     private void changeAct(View view) {
 
         Intent changeAct;
-        changeAct = new Intent(this, meActivity.class);
-        changeAct.putExtra("name", "Igor");
+        changeAct = new Intent(this, touchcontact.class);
+        changeAct.putExtra("name", "igor");
         startActivity(changeAct);
     }
 
@@ -90,7 +72,7 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
                 Log.d(LOGCAT, "Dropped");
                 View view = (View) dragevent.getLocalState();
                 //  layoutview.setBackgroundColor(Color.BLACK);
-               // ((ViewGroup)layoutview).getChildAt(0).setBackgroundColor(Color.BLACK);
+                //((ViewGroup)layoutview).getChildAt(0).setBackgroundColor(Color.BLACK);
                 setVisibility(View.VISIBLE);
 
                 //layoutview.get
@@ -102,7 +84,8 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
                 //   view.setVisibility(View.VISIBLE);
                 //   setVisibility(View.INVISIBLE);
 
-
+                TextView call = (TextView)findViewById(R.id.Call);
+                call.setText("Bajs");
                 ((View)dragevent.getLocalState()).setVisibility(View.VISIBLE);
 
                 break;

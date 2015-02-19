@@ -1,55 +1,96 @@
 package com.example.olle.grafiskdel;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 
-public class touchcontact extends ActionBarActivity {
+public class touchcontact extends ActionBarActivity implements View.OnTouchListener, View.OnDragListener {
+
+    final String LOGCAT = "debug";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_touchcontact);
+        /**
+         * This is a really nifty way of assigning View events without locking it in.
+         */
+        findViewById(R.id.testAct).setOnTouchListener(this);
+        findViewById(R.id.Call).setOnDragListener(this);
 
+        ImageButton img=new ImageButton(this);
+        img.setImageResource(R.drawable.dad);
+        View.DragShadowBuilder shadowBuilder2 = new View.DragShadowBuilder(img);
+        img.startDrag(null, shadowBuilder2, img, 0);
 
 
     }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_touchcontact, menu);
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            View.DragShadowBuilder shadowBuilder2 = new View.DragShadowBuilder(view);
+            view.startDrag(null, shadowBuilder2, view, 0);
+           // view.setVisibility(View.INVISIBLE);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public boolean onDrag(View layoutview, DragEvent dragevent) {
+        int action = dragevent.getAction();
+        switch (action) {
+            case DragEvent.ACTION_DRAG_STARTED:
+                  Log.d(LOGCAT, "Drag event started");
+                System.out.println("Stoff");
+                //  setVisibility(View.VISIBLE);
+
+                break;
+            case DragEvent.ACTION_DRAG_ENTERED:
+                System.out.println("Stoff");
+                Log.d(LOGCAT, "Drag event entered into "+layoutview.toString());
+                break;
+            case DragEvent.ACTION_DRAG_EXITED:
+                System.out.println("Stoff");
+                Log.d(LOGCAT, "Drag event exited from "+layoutview.toString());
+                break;
+            case DragEvent.ACTION_DROP:
+                System.out.println("Stoff");
+                Log.d(LOGCAT, "Dropped");
+                View view = (View) dragevent.getLocalState();
+
+
+                TextView call = (TextView)findViewById(R.id.Call);
+
+                String value ="#";
+                Bundle extras = getIntent().getExtras();
+                if (extras != null) {
+                    value = extras.getString("name");
+                }
+
+              //  findViewById(R.id.touchcontact).setBackgroundColor(Color.BLACK);
+                ((TextView) findViewById(R.id.Call)).setText(value);
+                ((View)dragevent.getLocalState()).setVisibility(View.VISIBLE);
+
+                break;
+            case DragEvent.ACTION_DRAG_ENDED:
+                Log.d(LOGCAT, "Drag ended");
+                System.out.println("Stoff");
+                break;
+            default:
+                break;
+        }
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void changeText(View view) {
-      Button testbutton = (Button)findViewById(R.id.button4);
-        Bundle extras = getIntent().getExtras();
-        String testData ="";
-        if (extras != null) {
-            testData = extras.getString("new_variable_name");
-        }
-      testbutton.setText(testData);
-
-    }
 }
