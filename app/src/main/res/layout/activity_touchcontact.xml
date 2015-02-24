@@ -50,7 +50,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="test drag button"
         android:id="@+id/testAct"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
@@ -64,4 +64,5 @@
         android:layout_alignRight="@+id/textView6"
         android:layout_alignEnd="@+id/textView6"
         android:layout_marginTop="152dp" />
+
 </RelativeLayout>

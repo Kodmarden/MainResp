@@ -1,13 +1,11 @@
 package com.example.olle.grafiskdel;
 
-import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -24,28 +22,18 @@ public class touchcontact extends ActionBarActivity implements View.OnTouchListe
          */
         findViewById(R.id.testAct).setOnTouchListener(this);
         findViewById(R.id.Call).setOnDragListener(this);
-
-        ImageButton img=new ImageButton(this);
-        img.setImageResource(R.drawable.dad);
-        View.DragShadowBuilder shadowBuilder2 = new View.DragShadowBuilder(img);
-        img.startDrag(null, shadowBuilder2, img, 0);
-
-
     }
-
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             View.DragShadowBuilder shadowBuilder2 = new View.DragShadowBuilder(view);
             view.startDrag(null, shadowBuilder2, view, 0);
-           // view.setVisibility(View.INVISIBLE);
             return true;
         } else {
             return false;
         }
     }
-
 
     public boolean onDrag(View layoutview, DragEvent dragevent) {
         int action = dragevent.getAction();
@@ -54,7 +42,6 @@ public class touchcontact extends ActionBarActivity implements View.OnTouchListe
                   Log.d(LOGCAT, "Drag event started");
                 System.out.println("Stoff");
                 //  setVisibility(View.VISIBLE);
-
                 break;
             case DragEvent.ACTION_DRAG_ENTERED:
                 System.out.println("Stoff");
@@ -68,8 +55,6 @@ public class touchcontact extends ActionBarActivity implements View.OnTouchListe
                 System.out.println("Stoff");
                 Log.d(LOGCAT, "Dropped");
                 View view = (View) dragevent.getLocalState();
-
-
                 TextView call = (TextView)findViewById(R.id.Call);
 
                 String value ="#";
@@ -77,15 +62,13 @@ public class touchcontact extends ActionBarActivity implements View.OnTouchListe
                 if (extras != null) {
                     value = extras.getString("name");
                 }
-
-              //  findViewById(R.id.touchcontact).setBackgroundColor(Color.BLACK);
                 ((TextView) findViewById(R.id.Call)).setText(value);
                 ((View)dragevent.getLocalState()).setVisibility(View.VISIBLE);
 
                 break;
             case DragEvent.ACTION_DRAG_ENDED:
                 Log.d(LOGCAT, "Drag ended");
-                System.out.println("Stoff");
+
                 break;
             default:
                 break;
