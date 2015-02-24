@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 public class AddContactActivity extends ActionBarActivity {
@@ -11,7 +14,38 @@ public class AddContactActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addcontactlay);
+        setContentView(R.layout.activity_add_contact);
+
+    }
+
+
+    public void adding() {
+        Button knapp = (Button) findViewById(R.id.button4);
+        knapp.setOnClickListener(new View.OnClickListener() {
+            EditText namnet = (EditText) findViewById(R.id.namn);
+            EditText tele = (EditText)findViewById(R.id.telefon);
+            EditText mail = (EditText)findViewById(R.id.mailadress);
+
+            @Override
+            public void onClick(View v) {
+
+                String namnet1 = namnet.getText().toString();
+                String telefonnumret = tele.getText().toString();
+                String mailen = mail.getText().toString();
+                Contact kontakt;
+
+                    if (namnet1.length()==0 || telefonnumret.length()==0 || mailen.length() == 0)
+
+                    System.out.println("Invalid input");
+
+                    else {
+                        kontakt = new Contact(namnet1, telefonnumret, mailen);
+                    }
+
+
+                    }
+
+        });
     }
 
 
