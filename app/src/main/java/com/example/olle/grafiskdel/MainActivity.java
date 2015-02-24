@@ -19,7 +19,6 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
 
     final String LOGCAT = "debug";
     View.DragShadowBuilder shadowBuilder;
-    TextView[] _textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,15 +30,22 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
          * This is a really nifty way of assigning View events without locking it in.
          */
         findViewById(R.id.button3).setOnTouchListener(this);
+        findViewById(R.id.button).setOnDragListener(this);
 
     }
 
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            shadowBuilder = new View.DragShadowBuilder(view);
-            view.startDrag(null, shadowBuilder, view, 0);
-            //view.setVisibility(View.INVISIBLE);
-            changeAct(view);
+//            setContentView(R.layout.activity_touchcontact);
+//            View dasView=findViewById(R.id.touchcontact);
+            //shadowBuilder = new View.DragShadowBuilder(dasView);
+            //dasView.startDrag(null, shadowBuilder, dasView, 0);
+//            shadowBuilder= new View.DragShadowBuilder(view);
+//            dasView.startDrag(null,shadowBuilder,view,0);
+//            dasView.findViewById(R.id.Call).setOnDragListener(this);
+            Intent intent=new Intent(this,touchcontact.class);
+
+            startActivity(new Intent(this,touchcontact.class));
             return true;
         } else {
             return false;
@@ -58,23 +64,27 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
         int action = dragevent.getAction();
         switch (action) {
             case DragEvent.ACTION_DRAG_STARTED:
-                Log.d(LOGCAT, "Drag event started");
-                setVisibility(View.VISIBLE);
-
+                System.out.println("Action dragstarteted");
+                System.out.println(layoutview.getId());
                 break;
             case DragEvent.ACTION_DRAG_ENTERED:
-                Log.d(LOGCAT, "Drag event entered into "+layoutview.toString());
+                System.out.println("Action drag entered");
+                System.out.println(layoutview.getId());
                 break;
             case DragEvent.ACTION_DRAG_EXITED:
-                Log.d(LOGCAT, "Drag event exited from "+layoutview.toString());
+                System.out.println("Action dragexited");
+                System.out.println(layoutview.getId());
                 break;
             case DragEvent.ACTION_DROP:
-                Log.d(LOGCAT, "Dropped");
-                View view = (View) dragevent.getLocalState();
+                System.out.println("Action drop");
+                System.out.println(layoutview.getId());
+                if(layoutview instanceof TextView) {
+                    ((TextView) layoutview).setText("Derp");
+                    setContentView(R.layout.activity_main);
+                }
+              //  View view = (View) dragevent.getLocalState();
                 //  layoutview.setBackgroundColor(Color.BLACK);
                 //((ViewGroup)layoutview).getChildAt(0).setBackgroundColor(Color.BLACK);
-                setVisibility(View.VISIBLE);
-
                 //layoutview.get
                 // ViewGroup owner = (ViewGroup) view.getParent();
                 // owner.setBackgroundColor(Color.BLACK);
@@ -83,29 +93,17 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
                 //   container.addView(view);
                 //   view.setVisibility(View.VISIBLE);
                 //   setVisibility(View.INVISIBLE);
-
-                TextView call = (TextView)findViewById(R.id.Call);
-                call.setText("Bajs");
-                ((View)dragevent.getLocalState()).setVisibility(View.VISIBLE);
-
                 break;
             case DragEvent.ACTION_DRAG_ENDED:
                 Log.d(LOGCAT, "Drag ended");
+                System.out.println(layoutview.getId());
                 break;
             default:
+                System.out.println("Default case");
+                System.out.println(layoutview.getId());
                 break;
         }
         return true;
-    }
-
-    /**
-     * Sets visibility of aggregator TextViews
-     * @param a visible state
-     */
-    void setVisibility(int a)
-    {
-        for (int i = 0 ; i < _textView.length; i++)
-            _textView[i].setVisibility(a);
     }
 
     public void me(View view) {
@@ -118,5 +116,10 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
     public void startListActivity(View view)
     {
         startActivity(new Intent(this, ContactListActivity.class));
+    }
+
+    public void startDrawView(View view)
+    {
+        setContentView(new DrawView(this.getBaseContext()));
     }
 }

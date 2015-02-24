@@ -24,13 +24,6 @@ public class touchcontact extends ActionBarActivity implements View.OnTouchListe
          */
         findViewById(R.id.testAct).setOnTouchListener(this);
         findViewById(R.id.Call).setOnDragListener(this);
-
-        ImageButton img=new ImageButton(this);
-        img.setImageResource(R.drawable.dad);
-        View.DragShadowBuilder shadowBuilder2 = new View.DragShadowBuilder(img);
-        img.startDrag(null, shadowBuilder2, img, 0);
-
-
     }
 
 
