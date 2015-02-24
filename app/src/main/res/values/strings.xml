@@ -7,5 +7,6 @@
     <string name="title_activity_me">meActivity</string>
     <string name="title_activity_touchcontact">touchcontact</string>
     <string name="title_activity_ContactListActivity">touchcontact</string>
+    <string name="title_activity_AddContactActivity" />
 
 </resources>
